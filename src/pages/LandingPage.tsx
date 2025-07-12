@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
 
     const handleGetStarted = () => {
         // Add your navigation logic here
-        console.log('Get Started clicked');
+        console.log('Get Started clicked - navigate to the next page');
     };
     
     return (
