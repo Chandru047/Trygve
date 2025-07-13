@@ -1,12 +1,12 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LandingPage.css';
 
-// 
 const LandingPage: React.FC = () => {
     const navigate = useNavigate();
     const [currentSlide, setCurrentSlide] = useState(0);
-
+    const [slideDirection, setSlideDirection] = useState('right'); // 'right' or 'left'
+    
     const slides = [
         {
             background: '/1.png',
@@ -31,15 +31,22 @@ const LandingPage: React.FC = () => {
     ];
 
     const nextSlide = () => {
+        setSlideDirection('right');
         setCurrentSlide((prev) => (prev + 1) % slides.length);
     };
 
     useEffect(() => {
-        setTimeout(()=>setCurrentSlide(1), 3000);
+        const timer = setTimeout(() => {
+            setSlideDirection('right');
+            setCurrentSlide(1);
+        }, 3000);
+        
+        return () => clearTimeout(timer);
     }, []);
 
-    const lastSlide = () =>{
-        setCurrentSlide((_) => slides.length -1 );
+    const lastSlide = () => {
+        setSlideDirection('right');
+        setCurrentSlide(slides.length - 1);
     }
 
     const handleGetStarted = () => {
@@ -52,7 +59,7 @@ const LandingPage: React.FC = () => {
             {slides.map((slide, index) => (
                 <div
                     key={index}
-                    className={`slide ${index === currentSlide ? 'active' : ''}`}
+                    className={`slide ${index === currentSlide ? 'active' : index < currentSlide ? 'previous' : ''}`}
                     style={{ backgroundImage: `url(${slide.background})` }}
                 >
                     <div className="slide-content">
@@ -76,7 +83,10 @@ const LandingPage: React.FC = () => {
                             <span
                                 key={index}
                                 className={`dot ${index === currentSlide ? 'active' : ''}`}
-                                onClick={() => setCurrentSlide(index)}
+                                onClick={() => {
+                                    setSlideDirection(index > currentSlide ? 'right' : 'left');
+                                    setCurrentSlide(index);
+                                }}
                             ></span>
                         )))}
                     </div>
