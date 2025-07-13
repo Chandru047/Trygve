@@ -1,8 +1,10 @@
 import React, {useState,useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/LandingPage.css';
 
 // 
 const LandingPage: React.FC = () => {
+    const navigate = useNavigate();
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const slides = [
@@ -41,8 +43,8 @@ const LandingPage: React.FC = () => {
     }
 
     const handleGetStarted = () => {
-        // Add your navigation logic here
-        console.log('Get Started clicked - navigate to the next page');
+        // Navigate to the login page
+        navigate('/login');
     };
     
     return (
@@ -55,7 +57,7 @@ const LandingPage: React.FC = () => {
                 >
                     <div className="slide-content">
                         <h1 className="logo">{slide.title}</h1>
-                        <p className="tagline">{slide.subtitle}</p>
+                        <p className="landing-tagline">{slide.subtitle}</p>
                         {index === slides.length - 1 && (
                             <button className="get-started-btn" onClick={handleGetStarted}>
                                 Get Started

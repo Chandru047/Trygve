@@ -34,11 +34,11 @@
     text-transform: uppercase;
 }
 
-.tagline {
+.landing-tagline {
     position: relative;
     z-index: 2;
     font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     font-weight: 300;
     font-family: 'Montserrat', sans-serif;
     margin-top: 0.5rem;
@@ -105,9 +105,9 @@
     line-height: 1.2;
 }
 
-.tagline {
+.landing-tagline {
     font-size: clamp(1rem, 2vw, 1.5rem);
-    color: rgba(255, 255, 255, 0.9);
+    color: white;
     font-weight: 300;
     font-family: 'Montserrat', sans-serif;
     margin-top: 0.5rem;
