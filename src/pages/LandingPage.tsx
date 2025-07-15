@@ -34,7 +34,7 @@ const LandingPage: React.FC = () => {
         setSlideDirection('right');
         setCurrentSlide((prev) => (prev + 1) % slides.length);
     };
-
+ 
     useEffect(() => {
         const timer = setTimeout(() => {
             setSlideDirection('right');
